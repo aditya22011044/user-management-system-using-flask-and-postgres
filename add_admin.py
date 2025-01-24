@@ -3,9 +3,8 @@ import hashlib
 
 def add_admin():
     with app.app_context():
-#        username = "admin"
-#        password = "admin123"
-
+        #
+        #
         hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
         existing_admin = Admin.query.filter_by(username=username).first()
