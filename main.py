@@ -2,14 +2,18 @@ from flask import Flask, flash, render_template, request,redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import hashlib
+import os
+from flask_migrate import Migrate
+
 
 app=Flask(__name__)
 app.config["SECRET_KEY"]='65b0b774279de460f1cc5c92'
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:1234@localhost:5432/mydb'
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://aditya_atole:w1d57XHXae0mNI9Wsexpn0cu11w0rHLH@dpg-cu9o6edds78s739gimgg-a.oregon-postgres.render.com/mydb_jkwq'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 app.config["SESSION_PERMANENT"]=False
 app.config["SESSION_TYPE"]='filesystem'
 db=SQLAlchemy(app)
+migrate = Migrate(app, db)
 Session(app)
 
 def hash_password(password):
