@@ -23,10 +23,10 @@ app.config["SESSION_TYPE"] = 'filesystem'
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = aditya.22011044@viit.ac.in
-app.config['MAIL_PASSWORD'] = ylmcckchqxptoxmt
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_DEFAULT_SENDER'] = no-reply@gmail.com
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_USERNAME')
 
 mail = Mail(app)
 db=SQLAlchemy(app)
