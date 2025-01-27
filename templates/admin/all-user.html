@@ -1,0 +1,100 @@
+{% extends "admin/layout.html" %}
+
+{% block content %}
+<div class="container">
+    {% include 'admin/navbar.html' %}
+
+    <div class="my-4">
+        <form action="" method="POST" style="width:100%">
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" name="search" id="search" class="form-control my-1 w-50" placeholder="Search users...">
+                <button type="submit" class="btn btn-success ml-2">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="my-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Edu</th>
+                        <th>Status</th>
+                        <th>Actions</th>  <!-- Added Actions column -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.fname }}</td>
+                        <td>{{ user.lname }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.edu }}</td>
+                        <td>
+                            {% if user.status == 1 %}
+                                <span class="badge badge-success">Approved</span>
+                            {% else %}
+                                <span class="badge badge-warning">Pending</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.status == 1 %}
+                                <a href="/admin/disapprove-user/{{ user.id }}">
+                                    <button class="btn btn-danger btn-sm">Disapprove</button>
+                                </a>
+                            {% else %}
+                                <a href="/admin/approve-user/{{ user.id }}">
+                                    <button class="btn btn-warning btn-sm">Approve</button>
+                                </a>
+                            {% endif %}
+                                <a href="/admin/delete-user/{{ user.id }}" onclick="return confirm('Are you sure you want to delete this user?');">
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .thead-dark th {
+        background-color: #343a40;
+        color: white;
+    }
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .btn-sm {
+        font-size: 0.875rem;
+    }
+    .badge-success {
+        background-color: #28a745;
+        color: white;
+        padding: 0.25rem 0.5rem;
+    }
+    .badge-warning {
+        background-color: #ffc107;
+        color: black;
+        padding: 0.25rem 0.5rem;
+    }
+    .ml-2 {
+        margin-left: 10px;
+    }
+    .my-4 {
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+{% endblock content %}
