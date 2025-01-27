@@ -1,0 +1,64 @@
+{% extends 'admin/layout.html' %}
+{% block content %}
+<div class="container">
+    {% include 'admin/navbar.html' %}
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-6 my-2">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body text-center bg-gradient-success text-white p-4">
+                    <h4 class="font-weight-bold">Total Users</h4>
+                    <h2 class="font-weight-bold display-4">{{ totalUser }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 my-2">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body text-center bg-gradient-warning text-dark p-4">
+                    <h4 class="font-weight-bold">Approved Users</h4>
+                    <h2 class="font-weight-bold display-4">{{ totalApprove }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 my-2">
+            <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card-body text-center bg-gradient-primary text-white p-4">
+                    <h4 class="font-weight-bold">Disapproved Users</h4>
+                    <h2 class="font-weight-bold display-4">{{ NotTotalApprove }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        transition: transform 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+    }
+    .card-body h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    .card-body h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+    .bg-gradient-success {
+        background: linear-gradient(to right, #4caf50, #2e7d32);
+    }
+    .bg-gradient-warning {
+        background: linear-gradient(to right, #ff9800, #e65100);
+    }
+    .bg-gradient-primary {
+        background: linear-gradient(to right, #2196f3, #0d47a1);
+    }
+</style>
+
+{% endblock content %}
